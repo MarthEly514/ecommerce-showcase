@@ -1,0 +1,32 @@
+"use client";
+
+interface WhatsAppButtonProps {
+  productId: string;
+  productName: string;
+  phoneNumber: string;
+}
+
+export default function WhatsAppButton({ productId, productName, phoneNumber }: WhatsAppButtonProps) {
+  async function handleClick() {
+    const message = encodeURIComponent(`Bonjour, je suis intéressé par le produit ${productName}`);
+    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    fetch("/api/analytics", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ eventType: "whatsapp_click", productId }),
+    }).catch(() => {});
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-3xl bg-ink px-6 py-4 text-base font-medium text-paper transition hover:opacity-90"
+      aria-label={`Contacter via WhatsApp pour ${productName}`}
+    >
+      Contacter via WhatsApp
+    </button>
+  );
+}

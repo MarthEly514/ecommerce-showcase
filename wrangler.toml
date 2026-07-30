@@ -1,0 +1,22 @@
+name = "ecommerce-showcase"
+main = ".open-next/worker.js"
+compatibility_date = "2026-07-15"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+binding = "ASSETS"
+directory = ".open-next/assets"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ecommerce_showcase_db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "PRODUCT_IMAGES"
+bucket_name = "ecommerce-showcase-images"
+
+[vars]
+ADMIN_PASSWORD = "change-me"
+ADMIN_SECRET = "change-me-too-a-long-random-string"
+WHATSAPP_PHONE_NUMBER = "22900000000"

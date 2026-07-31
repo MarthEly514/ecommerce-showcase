@@ -5,7 +5,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/products/${product.id}`}
-      className="group block overflow-hidden rounded-3xl bg-white transition hover:shadow-lg"
+      className="group block overflow-hidden shadow-lg shadow-gray-400/20 rounded-3xl bg-white transition hover:shadow-xl hover:shadow-gray-400/30"
     >
       <div className="aspect-square overflow-hidden bg-black/5">
         <img
@@ -18,7 +18,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="space-y-1 p-4">
         <p className="text-xs uppercase tracking-wide text-ink/50">{product.category}</p>
         <h3 className="font-medium">{product.name}</h3>
-        <p className="text-sm text-ink/70">{product.price.toFixed(2)} €</p>
+        <p className="text-sm text-ink/70">{product.price.toFixed(2)} XOF</p>
       </div>
     </Link>
   );

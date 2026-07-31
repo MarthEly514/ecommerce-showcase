@@ -23,7 +23,7 @@ export default function WhatsAppButton({ productId, productName, phoneNumber }: 
   return (
     <button
       onClick={handleClick}
-      className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-3xl bg-ink px-6 py-4 text-base font-medium text-paper transition hover:opacity-90"
+      className="flex flex-row min-h-[44px] w-full items-center justify-center gap-2 rounded-3xl bg-green-600 px-6 py-4 text-base font-medium text-paper transition hover:opacity-90"
       aria-label={`Contacter via WhatsApp pour ${productName}`}
     >
       Contacter via WhatsApp

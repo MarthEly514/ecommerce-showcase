@@ -34,7 +34,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <p className="text-xs uppercase tracking-wide text-ink/50">{product.category}</p>
             <h1 className="text-3xl font-semibold tracking-tight">{product.name}</h1>
             <p className="text-lg text-ink/70">{product.description}</p>
-            <p className="text-2xl font-medium">{product.price.toFixed(2)} €</p>
+            <p className="text-2xl font-medium">{product.price.toFixed(2)} XOF</p>
             <WhatsAppButton
               productId={product.id}
               productName={product.name}

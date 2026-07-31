@@ -6,7 +6,12 @@ function getDb() {
   return getCloudflareContext().env.DB;
 }
 
-export async function listProducts(params: { search?: string; category?: string }) {
+export async function listProducts(params: {
+  search?: string;
+  category?: string;
+  page?: number;
+  pageSize?: number;
+}) {
   const db = getDb();
   const conditions: string[] = [];
   const values: string[] = [];
@@ -21,9 +26,22 @@ export async function listProducts(params: { search?: string; category?: string 
   }
 
   const where = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
-  const stmt = db.prepare(`SELECT * FROM products ${where} ORDER BY created_at DESC`);
-  const { results } = await stmt.bind(...values).all<Product>();
-  return results;
+  const pageSize = params.pageSize ?? 12;
+  const page = Math.max(1, params.page ?? 1);
+  const offset = (page - 1) * pageSize;
+
+  const countResult = await db
+    .prepare(`SELECT COUNT(*) AS total FROM products ${where}`)
+    .bind(...values)
+    .first<{ total: number }>();
+  const total = countResult?.total ?? 0;
+
+  const { results } = await db
+    .prepare(`SELECT * FROM products ${where} ORDER BY created_at DESC LIMIT ? OFFSET ?`)
+    .bind(...values, pageSize, offset)
+    .all<Product>();
+
+  return { products: results, total, page, pageSize };
 }
 
 export async function getProduct(id: string) {

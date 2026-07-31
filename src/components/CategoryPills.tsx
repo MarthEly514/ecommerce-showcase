@@ -11,6 +11,7 @@ export default function CategoryPills({ categories }: { categories: string[] }) 
     const params = new URLSearchParams(searchParams.toString());
     if (category === "all") {
       params.delete("category");
+      params.delete("page")
     } else {
       params.set("category", category);
     }

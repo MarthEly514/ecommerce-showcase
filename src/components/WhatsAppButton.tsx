@@ -1,4 +1,5 @@
 "use client";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 interface WhatsAppButtonProps {
   productId: string;
@@ -15,7 +16,7 @@ export default function WhatsAppButton({ productId, productName, phoneNumber }: 
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ eventType: "whatsapp_click", productId }),
-    }).catch(() => {});
+    }).catch(() => { });
 
     window.open(url, "_blank", "noopener,noreferrer");
   }
@@ -26,6 +27,7 @@ export default function WhatsAppButton({ productId, productName, phoneNumber }: 
       className="flex flex-row min-h-[44px] w-full items-center justify-center gap-2 rounded-3xl bg-green-600 px-6 py-4 text-base font-medium text-paper transition hover:opacity-90"
       aria-label={`Contacter via WhatsApp pour ${productName}`}
     >
+      <WhatsAppIcon />
       Contacter via WhatsApp
     </button>
   );

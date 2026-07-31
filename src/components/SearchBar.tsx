@@ -12,6 +12,7 @@ export default function SearchBar() {
       params.set("search", value);
     } else {
       params.delete("search");
+      params.delete("page")
     }
     router.push(`/products?${params.toString()}`);
   }
